@@ -1,0 +1,69 @@
+import sympy
+import math
+#1 task Упростите !
+
+print()
+print("Task 1: ")
+x,y,z=sympy.symbols('x y z')
+exp=((1/2*(x**4))+ (1/5*(y**3))-(2/9*(z**2)))
+print("Before substitution:{}" . format(exp))
+res_exp=exp.subs([(x,2),(y,1),(z,1)])
+print("After substitution:{}" . format(exp))
+
+#2 task Упростите 
+
+print()
+print("Task 2: ")
+x=sympy.symbols('x')
+print(sympy.simplify((x**(5/2))*((x**(1/2))+(x**(-1/2)))))
+
+#3 task Разверните  
+
+print()
+print("Task 3: ")
+x=sympy.symbols('x')
+print(sympy.expand((x+1)**4))
+
+#4 task Разложите на множители выражения 
+
+print()
+print("Task 4: ")
+x=sympy.symbols('x')
+print(sympy.factor(-4*(x**2)+7*x+2))
+print(sympy.factor((2*x*(y**3))-(6*x*(y**2))+6*x*y-2*x))
+
+"""5 task Упростите алгебраическую дробь, приведите к общему знаменателю,
+выделите числитель и знаменатель  !!!"""
+
+print("Task 5: ")
+x=sympy.symbols('x')
+print(sympy.simplify((3/((x+4)**2))+(6/((x**2)-16))+(4/(x-4))))
+
+
+#6 Упростить выражение командами simplify, expand, collect, factor
+
+print()
+print("Task 6: ")
+x,y,z=sympy.symbols('x y z')
+print ("The result", end="")
+print(sympy.simplify(((x+y)**3)+((sympy.sin(z))**2)+((sympy.cos(z))**2)+7))
+print(sympy.expand(((x+y)**3)+((sympy.sin(z))**2)+((sympy.cos(z))**2)+7))
+print(sympy.collect(((x+y)**3)+((sympy.sin(z))**2)+((sympy.cos(z))**2)+7,x))
+print(sympy.factor(((x+y)**3)+((sympy.sin(z))**2)+((sympy.cos(z))**2)+7))
+
+
+
+""" 7.	Ввести выражение, используя математические функции пакета sympy. 
+Проверить правильность ввода подставив заданные значения переменных (переменные ввести с консоли). 
+Результат вывести с 6 знаками после точки"""
+
+print()
+print("Task 7: ")
+x=input("Введите значение x = ")
+y=input("Введите значение y = ")
+z=input("Введите значение z = ")
+x=float(x)
+y=float(y)
+z=float(z)
+
+print((math.log(y**(math.sqrt(abs(x))))*(x-(math.e)*y)+(math.sin(math.atan(z)))**2))
