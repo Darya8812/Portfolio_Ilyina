@@ -1,0 +1,86 @@
+import math
+import sympy
+
+#1 task Арифметические вычисления
+print(9923+1254)
+print(8356-3026)
+print(345*987)
+print(8976/52)
+print(47**2)
+print(math.sqrt(999))
+
+#2 task Разложить на простые множители
+print(sympy.factorint(395725))
+print(sympy.factorint(875421))
+
+"""3 task округлить, округлить до большего целого, округлить
+до меньшего целого, отбросить дробную часть"""
+print(round(7.501))
+print(math.ceil(7.501))
+print(math.floor(7.501))
+print(math.trunc(7.501))
+
+#4 task Найти модуль двух чисел 
+print(abs(13))
+print(abs(-56.8))
+
+""" task 5. Найти остаток от деления, наименьшее
+общее кратное, наибольший общий делитель  """
+print(473%33)
+print ("The gcd of 473 and 33 is : ", end ="")
+print(sympy.gcd(473, 33))
+print ("The lcm of 473 and 33 is : ", end ="")
+print(sympy.lcm(473, 33))
+
+#6 task Найти: sin(π/n), ctg(∞), en, ln(n), n!
+print(math.sin((math.pi)/3))
+print(sympy.cot((math.inf)))
+print((math.e)**3)
+print(sympy.ln(3))
+print(math.factorial(3))
+
+"""7.Вычислить выражение для комплексных чисел. Для результата найти вещественную
+и мнимую части, абсолютное значение (модуль) и аргумент (фазу),
+комплексно-сопряженное число:  """
+
+import cmath
+z1=1+5.3j
+z2=(5+5j)/9j
+z3=-10j
+z4=1
+z5=((-3j)/(15-8j))
+z=(z5*(z1*z2+z4*z3))+(z1/(((z3+z2)/(z5+z2))+z4))
+print("вещественная часть",z.real)
+print("мнимая часть", z.imag)
+print("абсолютное значение (модуль)", abs(z))
+print("аргумент (фаза)",cmath.phase(z))
+print ("комплексно-сопряженное число",z.conjugate)
+
+#8 task 8.  Вычислить значение
+print (sympy.ln(abs(-((3*(2+math.sqrt(5.5)))/5)))-((((math.e)**sympy.acos(1/2))-(3*(math.sqrt(2+3/5))))/(sympy.tan(0.25))))
+
+((z3+z2)/(z5+z2))
+
+
+import sympy
+#1 task Упростите 
+x,y,z=sympy.symbols('x y z')
+print(sympy. ((1/2*(x**4))+ (1/5*(y**3))-(2/9*(z**2))))
+
+#2 task Упростите 
+x=sympy.symbols('x')
+print(sympy.simplify((x**(5/2))*((x**(1/2))+(x**(-1/2)))))
+
+#3 task Разверните  
+x=sympy.symbols('x')
+print(sympy.expand((x+1)**4))
+
+#4 task Разложите на множители выражения 
+x=sympy.symbols('x')
+print(sympy.factor(-4*(x**2)+7*x+2))
+print(sympy.factor((2*x*(y**3))-(6*x*(y**2))+6*x*y-2*x))
+
+"""5 task Упростите алгебраическую дробь, приведите к общему знаменателю,
+выделите числитель и знаменатель"""
+x=sympy.symbols('x')
+print(sympy.simplify((3/((x+4)**2))+(6/((x**2)-16))+(4/(x-4))))
