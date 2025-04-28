@@ -1,0 +1,121 @@
+import matplotlib.pyplot as plt
+#1. Линейный график (Line Plot)
+days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+temperature = [22, 24, 19, 21, 25, 23, 20]
+
+plt.plot(days, temperature, marker='o', linestyle='-', color='blue')
+plt.title('Temperature Over a Week')
+plt.xlabel('Day')
+plt.ylabel('Temperature (°C)')
+plt.grid(True)
+plt.show()
+
+#2. Столбчатая диаграмма (Bar Chart)
+products = ['Apple', 'Banana', 'Orange', 'Grapes']
+sales = [45, 30, 15, 25]
+
+plt.bar(products, sales, color=['red', 'yellow', 'orange', 'purple'])
+plt.title('Product Sales')
+plt.xlabel('Product')
+plt.ylabel('Quantity Sold')
+plt.show()
+
+#3. Горизонтальная столбчатая диаграмма (Horizontal Bar Chart)
+cities = ['Zurich', 'Vienna', 'Tokyo', 'Sydney']
+scores = [95, 94, 92, 89]
+
+plt.barh(cities, scores, color='green')
+plt.title('Quality of Life Index')
+plt.xlabel('Score')
+plt.ylabel('City')
+plt.show()
+
+#4. Гистограмма (Histogram)
+import numpy as np
+
+ages = np.random.normal(30, 5, 200)  # Средний возраст 30, std=5
+
+plt.hist(ages, bins=15, edgecolor='black', alpha=0.7)
+plt.title('Age Distribution')
+plt.xlabel('Age')
+plt.ylabel('Frequency')
+plt.show()
+
+#5. Круговая диаграмма (Pie Chart)
+companies = ['Apple', 'Samsung', 'Huawei', 'Xiaomi']
+market_share = [45, 25, 15, 15]
+colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99']
+
+plt.pie(market_share, labels=companies, colors=colors, autopct='%1.1f%%')
+plt.title('Market Share of Smartphone Companies')
+plt.show()
+
+#6. Точечный график (Scatter Plot)
+height = np.random.normal(170, 10, 100)  # Средний рост 170 см
+weight = height * 0.4 + np.random.normal(0, 5, 100)  # Примерная зависимость
+
+plt.scatter(height, weight, alpha=0.6)
+plt.title('Height vs Weight')
+plt.xlabel('Height (cm)')
+plt.ylabel('Weight (kg)')
+plt.grid(True)
+plt.show()
+
+#7. Box Plot (Ящик с усами)
+data = {
+    'IT': np.random.normal(80000, 10000, 100),
+    'Finance': np.random.normal(75000, 8000, 100),
+    'Marketing': np.random.normal(60000, 7000, 100)
+}
+
+plt.boxplot(data.values(), labels=data.keys())
+plt.title('Salary Distribution by Profession')
+plt.ylabel('Salary ($)')
+plt.show()
+
+#8. Несколько графиков на одном поле (Subplots)
+months = ['Jan', 'Feb', 'Mar', 'Apr']
+revenue = [20000, 22000, 25000, 23000]
+expenses = [15000, 16000, 17000, 15500]
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+
+ax1.plot(months, revenue, color='green')
+ax1.set_title('Revenue')
+
+ax2.plot(months, expenses, color='red')
+ax2.set_title('Expenses')
+
+plt.show()
+
+#9. График с заливкой (Area Plot)
+years = [2015, 2016, 2017, 2018, 2019]
+product_a = [20, 25, 30, 35, 40]
+product_b = [15, 20, 25, 30, 35]
+product_c = [10, 15, 20, 25, 30]
+
+plt.stackplot(years, product_a, product_b, product_c, 
+              labels=['Product A', 'Product B', 'Product C'])
+plt.legend(loc='upper left')
+plt.title('Revenue Contribution by Product')
+plt.xlabel('Year')
+plt.ylabel('Revenue ($)')
+plt.show()
+
+#10. Кастомизация графиков (Темы, Аннотации)
+plt.style.use('ggplot')  # Используем стиль 'ggplot'
+
+x = [1, 2, 3, 4]
+y = [10, 20, 25, 30]
+
+plt.plot(x, y, marker='D')
+plt.title('Customized Plot', fontsize=14)
+plt.xlabel('X-axis', fontsize=12)
+plt.ylabel('Y-axis', fontsize=12)
+
+# Добавляем аннотацию
+plt.annotate('Peak', xy=(3, 25), xytext=(2.5, 26),
+             arrowprops=dict(facecolor='black', shrink=0.05))
+
+plt.show()
+
