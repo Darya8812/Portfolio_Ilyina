@@ -1,0 +1,71 @@
+import sqlite3
+import pandas as pd
+
+# Подключаемся к существующей базе данных
+conn = sqlite3.connect("sales.db")  # База, указанная в твоем коде
+cursor = conn.cursor()
+
+# Проверяем список таблиц
+cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+print("Список таблиц:", cursor.fetchall())  # Убедись, что `vgsales` есть в списке
+
+# Запрос общего объема продаж
+cursor.execute("SELECT SUM(Global_Sales) FROM vgsales")
+print("Общий объем продаж:", cursor.fetchone()[0])
+print()
+
+# Топ-10 продаваемых игр
+cursor.execute("""
+    SELECT Name, SUM(Global_Sales) AS Total_Sales
+    FROM vgsales
+    GROUP BY Name
+    ORDER BY Total_Sales DESC
+    LIMIT 10
+""")
+df_top_games = pd.DataFrame(cursor.fetchall(), columns=["Game Name", "Total Sales"])
+print("Топ-5 продаваемых игр:")
+print(df_top_games)
+print()
+
+# Средние продажи на игру
+cursor.execute("SELECT AVG(Global_Sales) FROM vgsales")
+print("Средний объем продаж на игру:", cursor.fetchone()[0])
+print()
+
+# Количество игр по жанрам
+cursor.execute("""
+    SELECT Genre, COUNT(*) AS Game_Count
+    FROM vgsales
+    GROUP BY Genre
+    ORDER BY Game_Count DESC
+""")
+df_genre_count = pd.DataFrame(cursor.fetchall(), columns=["Genre", "Game Count"])
+print("Количество игр по жанрам:")
+print(df_genre_count)
+print()
+
+# Динамика продаж по годам
+cursor.execute("""
+    SELECT Year, SUM(Global_Sales) AS Total_Sales
+    FROM vgsales
+    GROUP BY Year
+    ORDER BY Year
+""")
+df_sales_by_year = pd.DataFrame(cursor.fetchall(), columns=["Year", "Total Sales"])
+print("Продажи видеоигр по годам:")
+print(df_sales_by_year)
+print()
+
+# Продажи по платформам
+cursor.execute("""
+    SELECT Platform, SUM(Global_Sales) AS Total_Sales
+    FROM vgsales
+    GROUP BY Platform
+    ORDER BY Total_Sales DESC
+""")
+df_platform_sales = pd.DataFrame(cursor.fetchall(), columns=["Platform", "Total Sales"])
+print("Продажи по платформам:")
+print(df_platform_sales)
+
+# Закрываем соединение
+conn.close()
