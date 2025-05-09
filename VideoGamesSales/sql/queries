@@ -66,6 +66,21 @@ cursor.execute("""
 df_platform_sales = pd.DataFrame(cursor.fetchall(), columns=["Platform", "Total Sales"])
 print("Продажи по платформам:")
 print(df_platform_sales)
+print()
+# SQL-запрос: суммарные продажи по жанрам
+query = """
+    SELECT Genre, SUM(Global_Sales) AS Total_Sales
+    FROM vgsales
+    GROUP BY Genre
+    ORDER BY Total_Sales DESC;
+"""
+
+# Считываем SQL-запрос сразу в DataFrame
+df_genre_sales = pd.read_sql_query(query, conn)
 
 # Закрываем соединение
 conn.close()
+
+# Проверяем, что данные загружены
+print("Продажи по жанрам:")
+print(df_genre_sales)
