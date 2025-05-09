@@ -1,3 +1,5 @@
+"D:\ ЗАОЧКА\pythonProject\venv\Scripts\python.exe" "D:\ ЗАОЧКА\pythonProject1\queries.py" 
+Список таблиц: [('vgsales',)]
 Общий объем продаж: 8920.44
 
 Топ-5 продаваемых игр:
@@ -106,5 +108,20 @@
 28      3DO         0.10
 29       GG         0.04
 30     PCFX         0.03
+
+Продажи по жанрам:
+           Genre  Total_Sales
+0         Action      1751.18
+1         Sports      1330.93
+2        Shooter      1037.37
+3   Role-Playing       927.37
+4       Platform       831.37
+5           Misc       809.96
+6         Racing       732.04
+7       Fighting       448.91
+8     Simulation       392.20
+9         Puzzle       244.95
+10     Adventure       239.04
+11      Strategy       175.12
 
 Process finished with exit code 0
