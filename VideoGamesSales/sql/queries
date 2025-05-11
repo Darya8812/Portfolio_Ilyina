@@ -67,20 +67,41 @@ df_platform_sales = pd.DataFrame(cursor.fetchall(), columns=["Platform", "Total 
 print("Продажи по платформам:")
 print(df_platform_sales)
 print()
-# SQL-запрос: суммарные продажи по жанрам
-query = """
+# Доля издателей на рынке
+cursor.execute("""
+    SELECT Publisher, SUM(Global_Sales) AS Total_Sales
+    FROM vgsales
+    GROUP BY Publisher
+    ORDER BY Total_Sales DESC
+    LIMIT 10;
+""")
+df_publisher_share = pd.DataFrame(cursor.fetchall(), columns=["Publisher", "Total Sales"])
+print("Доля издателей на рынке:")
+print(df_publisher_share)
+print()
+
+# Влияние цифровых продаж (анализ изменений по годам)
+cursor.execute("""
+    SELECT Year, COUNT(*) AS Game_Count, SUM(Global_Sales) AS Total_Sales
+    FROM vgsales
+    GROUP BY Year
+    ORDER BY Year;
+""")
+df_digital_sales_trend = pd.DataFrame(cursor.fetchall(), columns=["Year", "Game Count", "Total Sales"])
+print("Влияние цифровых продаж по годам:")
+print(df_digital_sales_trend)
+print()
+
+# Продажи по жанрам
+cursor.execute("""
     SELECT Genre, SUM(Global_Sales) AS Total_Sales
     FROM vgsales
     GROUP BY Genre
     ORDER BY Total_Sales DESC;
-"""
-
-# Считываем SQL-запрос сразу в DataFrame
-df_genre_sales = pd.read_sql_query(query, conn)
-
-# Закрываем соединение
-conn.close()
-
-# Проверяем, что данные загружены
+""")
+df_genre_sales = pd.DataFrame(cursor.fetchall(), columns=["Genre", "Total Sales"])
 print("Продажи по жанрам:")
 print(df_genre_sales)
+print()
+# Закрываем соединение
+conn.close()
